@@ -1,0 +1,126 @@
+<div class="container" style="border:thin">
+
+    <form #stdadd='ngForm' (ngSubmit)="Register(stdadd)" class="form-horizontal" style="width:50%">
+
+        <div class="form-group">
+
+            <div class="form-group" [class.has-error]="firstname.invalid && firstname.touched"
+                [class.has-success]="firstname.valid">
+
+                <label class="control-label col-sm-2" for="fname">First Name:</label>
+                <div class="col-sm-10">
+                    <input maxlength="15" style="width:50%" type="text" class="form-control" width="50%" id="fname"
+                        placeholder="Enter first name" name="firstname" firstname required
+                        [(ngModel)]='objstd.firstname' #firstname="ngModel">
+
+                    <span class="help-block" *ngIf="firstname.invalid && firstname.touched">
+                        First Name is required...!!!
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            <div class="form-group" [class.has-error]="lastname.invalid && lastname.touched"
+                [class.has-success]="lastname.valid">
+
+                <label class="control-label col-sm-2" for="email">Last Name:</label>
+                <div class="col-sm-10">
+                    <input style="width:50%" required type="text" class="form-control" width="50%" id="lastname"
+                        placeholder="Enter Last Name" name="lastname" lastname required [(ngModel)]='objstd.lastname'
+                        #lastname="ngModel">
+
+                    <span class="help-block" *ngIf="lastname.invalid && lastname.touched">
+                        Last Name is required...!!!
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="dropdown">
+
+            <div class="form-group" [class.has-error]="gender.invalid && gender.touched"
+                [class.has-success]="gender.valid">
+
+                <label class="control-label col-sm-2" for="gender">Gender:</label>
+
+                <div class="col-sm-10">
+                    <select style="width:50%" name="gender" width="50%" gender required [(ngModel)]='objstd.gender' #gender="ngModel">
+                        <option value="0" selected disabled>Please Select</option>
+                        <option value="1">Male</option>
+                        <option value="2">Female</option>
+
+                        <span class="help-block" *ngIf="gender.invalid && gender.touched">
+                            Gender is required...!!!
+                        </span>
+                    </select>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            <div class="form-group" [class.has-error]="dob.invalid && dob.touched" [class.has-success]="dob.valid">
+
+                <label class="control-label col-sm-2" for="dob">Date Of Birth:</label>
+                <div class="col-sm-10">
+                    <input #dob="ngModel" required style="width:50%" type="date"  [(ngModel)]='objstd.dob'
+                        class="form-control" width="50%" id="dob" placeholder="Select DOB" name="dob">
+
+                    <span class="help-block" *ngIf="dob.invalid && dob.touched">
+                        This field is required...!!!
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            <div class="form-group" [class.has-error]="email.invalid" [class.has-success]="email.valid">
+
+                <label class="control-label col-sm-2" for="email">Email:</label>
+                <div class="col-sm-10">
+                    <input #email="ngModel" [required]="objstd.value=='email'"
+                        pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" style="width:50%" type="text"
+                        [(ngModel)]='objstd.email' class="form-control" width="50%" id="email" placeholder="Enter email"
+                        name="email">
+
+                    <span class="help-block" *ngIf="email.invalid && email.touched">
+                        Email is required
+                    </span>
+                    <span class="help-block" *ngIf="email.errors?.pattern && email.touched">
+                        Email is Invalid
+                    </span>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            <div class="form-group" [class.has-error]="phone.invalid && phone.touched"
+                [class.has-success]="phone.valid">
+
+                <label class="control-label col-sm-2" for="phone">Phone Number:</label>
+                <div class="col-sm-10">
+                    <input #phone="ngModel" required style="width:50%" type="phone" [(ngModel)]='objstd.phone'
+                        class="form-control" width="50%" id="phone" placeholder="Enter phone number" name="phone">
+
+                    <span class="help-block" *ngIf="phone.invalid && phone.touched">
+                        phone number is required...!!!
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button id="btnsubmit" type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+<button style="display:none" type="button" #closeBtn class="btn btn-default" data-dismiss="modal">Close</button>
